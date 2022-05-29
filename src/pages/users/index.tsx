@@ -23,7 +23,7 @@ export default function UserList() {
   return (
     <Box>
       <Head>
-        <title>DashGO</title>
+        <title>DashGO - Usuários</title>
       </Head>
       <Header />
 
