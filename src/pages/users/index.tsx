@@ -17,31 +17,15 @@ import {
 import Head from "next/head";
 import Link from "next/link";
 import { RiAddLine, RiPencilLine } from "react-icons/ri";
-import { useQuery } from "react-query";
 
 import { Header } from "~components/Header";
 import { HeadingText } from "~components/HeadingText";
 import { Pagination } from "~components/Pagination";
 import { Sidebar } from "~components/Sidebar";
-import { api } from "~services/api";
+import { useUsers } from "~hooks/useUsers";
 
 export default function UserList() {
-  const { data, isLoading, isFetching, error } = useQuery(
-    "users",
-    async () => {
-      const { data } = await api("/users");
-
-      const users = data.users.map((user) => ({
-        ...user,
-        createdAt: new Date(user.createdAt).toLocaleDateString(),
-      }));
-
-      return users;
-    },
-    {
-      staleTime: 5 * 1000, // 5 seconds
-    }
-  );
+  const { data, isLoading, isFetching, error } = useUsers();
 
   const isLargeScreen = useBreakpointValue({
     base: false,
