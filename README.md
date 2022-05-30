@@ -7,7 +7,7 @@ This project is a news website that need plan subscription.
 ## Some Images
 
 <img src="/public/demo/home.png" alt="Home Page" width="600"/>
-<img src="/public/demo/login-page.png" alt="Login Page" width="600"/>
+<img src="/public/demo/users-list.png" alt="Users List Page" width="600"/>
 
 ## Technologies
 
