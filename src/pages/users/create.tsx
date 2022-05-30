@@ -1,7 +1,6 @@
 import {
   Flex,
   Box,
-  Heading,
   Divider,
   VStack,
   SimpleGrid,
@@ -12,6 +11,7 @@ import Head from "next/head";
 import { Input } from "~components/Form/Input";
 
 import { Header } from "~components/Header";
+import { HeadingText } from "~components/HeadingText";
 import { Sidebar } from "~components/Sidebar";
 
 export default function CreateUser() {
@@ -26,9 +26,7 @@ export default function CreateUser() {
         <Sidebar />
 
         <Box flex="1" borderRadius={8} bg="gray.800" p="8">
-          <Heading size="lg" fontWeight="normal">
-            Criar Usuários
-          </Heading>
+          <HeadingText>Criar Usuários</HeadingText>
 
           <Divider my="6" borderColor="gray.700" />
 
