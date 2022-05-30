@@ -23,13 +23,13 @@ import { Header } from "~components/Header";
 import { HeadingText } from "~components/HeadingText";
 import { Pagination } from "~components/Pagination";
 import { Sidebar } from "~components/Sidebar";
+import { api } from "~services/api";
 
 export default function UserList() {
   const { data, isLoading, isFetching, error } = useQuery(
     "users",
     async () => {
-      const response = await fetch("/api/users");
-      const data = await response.json();
+      const { data } = await api("/users");
 
       const users = data.users.map((user) => ({
         ...user,
