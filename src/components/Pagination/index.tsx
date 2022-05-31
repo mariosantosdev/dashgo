@@ -48,6 +48,16 @@ export function Pagination({
     return [];
   }, [currentPage, lastPage]);
 
+  const [initialInItem, endInItem] = useMemo(() => {
+    const initialInItem = (currentPage - 1) * registersPerPage + 1;
+    const endInItem = Math.min(
+      initialInItem + registersPerPage - 1,
+      totalCountOfItems
+    );
+
+    return [initialInItem, endInItem];
+  }, [currentPage, registersPerPage, totalCountOfItems]);
+
   return (
     <Stack
       direction={["column", "row"]}
@@ -57,7 +67,12 @@ export function Pagination({
       spacing="6"
     >
       <Box>
-        <strong>0</strong> - <strong>10</strong> de <strong>100</strong>
+        {initialInItem && !isNaN(endInItem) && totalCountOfItems && (
+          <>
+            <strong>{initialInItem}</strong> - <strong>{endInItem}</strong> de{" "}
+            <strong>{totalCountOfItems}</strong>
+          </>
+        )}
       </Box>
       <HStack spacing="2">
         {currentPage > 1 + siblingsCount && (
