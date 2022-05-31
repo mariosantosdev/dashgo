@@ -13,9 +13,10 @@ import {
   Text,
   useBreakpointValue,
   Spinner,
+  Link,
 } from "@chakra-ui/react";
 import Head from "next/head";
-import Link from "next/link";
+import NextLink from "next/link";
 import { useState } from "react";
 import { RiAddLine, RiPencilLine } from "react-icons/ri";
 
@@ -24,6 +25,8 @@ import { HeadingText } from "~components/HeadingText";
 import { Pagination } from "~components/Pagination";
 import { Sidebar } from "~components/Sidebar";
 import { useUsers } from "~hooks/useUsers";
+import { api } from "~services/api";
+import { queryClient } from "~services/queryClient";
 
 export default function UserList() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -34,6 +37,20 @@ export default function UserList() {
     base: false,
     lg: true,
   });
+
+  async function handlePretechUser(userId: number) {
+    await queryClient.prefetchQuery(
+      ["user", userId],
+      async () => {
+        const reponse = await api.get(`/users/${userId}`);
+
+        return reponse.data;
+      },
+      {
+        staleTime: 1000 * 60 * 5, // 5 minutes
+      }
+    );
+  }
 
   return (
     <Box>
@@ -54,7 +71,7 @@ export default function UserList() {
               )}
             </HeadingText>
 
-            <Link href="/users/create" passHref>
+            <NextLink href="/users/create" passHref>
               <Button
                 as="a"
                 size="sm"
@@ -64,7 +81,7 @@ export default function UserList() {
               >
                 Criar Novo
               </Button>
-            </Link>
+            </NextLink>
           </Flex>
 
           <Box overflowX={isLargeScreen ? "auto" : "scroll"}>
@@ -100,7 +117,14 @@ export default function UserList() {
                         </Td>
                         <Td>
                           <Box>
-                            <Text fontWeight="bold">{user.name}</Text>
+                            <Link
+                              color="purple.400"
+                              onMouseEnter={() =>
+                                handlePretechUser(Number(user.id))
+                              }
+                            >
+                              <Text fontWeight="bold">{user.name}</Text>
+                            </Link>
                             <Text fontSize="sm" color="gray.300">
                               {user.email}
                             </Text>
