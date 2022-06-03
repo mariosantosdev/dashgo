@@ -2,7 +2,7 @@
 
 This project was created on [Ignite Bootcamp](rocketseat.com.br/ignite).
 
-This project is a news website that need plan subscription.
+This is a fake dashboard built to improved knowledges about consume APIs
 
 ## Some Images
 
@@ -12,6 +12,14 @@ This project is a news website that need plan subscription.
 ## Technologies
 
 - [NextJS](https://nextjs.org/) - Framework to ReactJS
+- [Chakra UI](https://chakra-ui.com/) - Modern Library to build beautifuls designs
+- [React Hook Form](https://react-hook-form.com/) - Library to use performant and flexible forms 
+- [React Query](https://react-query.tanstack.com/) - Library to consume and sync datas
+- [MirageJS](https://miragejs.com/) - Fake API to help frontend
+- [Axios](https://axios-http.com/ptbr/docs/intro) - HTTP Client
+- [ApexCharts](https://apexcharts.com/) - Library to render charts components
+
+
 
 ## How Run It
 
